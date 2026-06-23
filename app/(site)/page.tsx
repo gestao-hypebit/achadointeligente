@@ -36,7 +36,7 @@ export default async function HomePage() {
                 type="search"
                 name="q"
                 placeholder="Buscar produtos, categorias..."
-                className="flex-1 px-5 py-3 rounded-xl text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-lg"
+                className="flex-1 px-5 py-3 rounded-xl bg-white text-slate-900 text-sm focus:outline-none focus:ring-2 focus:ring-amber-400 shadow-lg"
               />
               <button
                 type="submit"
