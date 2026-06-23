@@ -52,7 +52,40 @@ export default async function ArtigoPage({ params }: PageProps) {
 
   const relacionados = await getRelacionados(artigo.categoriaId, artigo.id);
 
-  const jsonLd = {
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+  const artigoUrl = `${siteUrl}/${artigo.categoria.slug}/${artigo.slug}`;
+
+  const jsonLdArticle = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: artigo.titulo,
+    description: artigo.descricao,
+    image: artigo.imagemCapa ? [artigo.imagemCapa] : undefined,
+    datePublished: artigo.criadoEm,
+    dateModified: artigo.atualizadoEm,
+    url: artigoUrl,
+    publisher: {
+      "@type": "Organization",
+      name: "Achado Inteligente",
+      url: siteUrl,
+    },
+    author: {
+      "@type": "Organization",
+      name: "Achado Inteligente",
+    },
+  };
+
+  const jsonLdBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Início", item: siteUrl },
+      { "@type": "ListItem", position: 2, name: artigo.categoria.nome, item: `${siteUrl}/${artigo.categoria.slug}` },
+      { "@type": "ListItem", position: 3, name: artigo.titulo, item: artigoUrl },
+    ],
+  };
+
+  const jsonLdItemList = artigo.produtos.length > 0 ? {
     "@context": "https://schema.org",
     "@type": "ItemList",
     name: artigo.titulo,
@@ -60,15 +93,26 @@ export default async function ArtigoPage({ params }: PageProps) {
       "@type": "ListItem",
       position: i + 1,
       name: ap.produto.nome,
+      url: ap.produto.linkAfiliado ? `${siteUrl}/api/redirect/${ap.produto.linkAfiliado.id}` : undefined,
     })),
-  };
+  } : null;
 
   return (
     <div className="max-w-5xl mx-auto px-4 py-8">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }}
       />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdBreadcrumb) }}
+      />
+      {jsonLdItemList && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdItemList) }}
+        />
+      )}
 
       <Breadcrumb
         items={[
