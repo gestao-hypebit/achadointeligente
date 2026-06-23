@@ -9,6 +9,9 @@ const geist = Geist({ subsets: ["latin"], variable: "--font-geist-sans" });
 export const metadata: Metadata = {
   title: { default: "Achado Inteligente | Reviews e Comparativos", template: "%s | Achado Inteligente" },
   description: "Reviews imparciais e comparativos dos melhores produtos com links de afiliado do Mercado Livre.",
+  other: {
+    "google-adsense-account": "ca-pub-4615237498354130",
+  },
 };
 
 const GA_ID = process.env.NEXT_PUBLIC_GA_ID;
