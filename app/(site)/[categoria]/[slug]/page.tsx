@@ -146,7 +146,7 @@ export default async function ArtigoPage({ params }: PageProps) {
       {artigo.produtos.length > 0 && (
         <section className="mt-12">
           <h2 className="text-2xl font-bold text-slate-900 mb-6 pb-3 border-b border-slate-200">
-            Reviews Completos
+            Análises Completas
           </h2>
           <div className="space-y-8">
             {artigo.produtos.map((ap) => (

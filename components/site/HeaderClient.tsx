@@ -22,7 +22,7 @@ export function HeaderClient({ categorias }: Props) {
               type="search"
               name="q"
               placeholder="Buscar produtos..."
-              className="w-56 lg:w-72 px-4 py-1.5 text-sm border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent bg-slate-50"
+              className="w-56 lg:w-72 px-4 py-2 text-sm border border-slate-200 rounded-full focus:outline-none focus:ring-2 focus:ring-violet-500 focus:border-transparent bg-white placeholder:text-slate-400"
             />
             <button
               type="submit"

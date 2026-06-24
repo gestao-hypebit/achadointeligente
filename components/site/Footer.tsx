@@ -19,17 +19,17 @@ export async function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10 mb-10">
           {/* Col 1: brand */}
           <div>
-            <Link href="/" className="inline-block mb-4">
+            <Link href="/" className="inline-flex items-center mb-4 bg-white rounded-xl px-3 py-2">
               <Image
                 src="/logoafiliados.png"
                 alt="Achado Inteligente"
-                width={140}
-                height={36}
-                className="h-9 w-auto object-contain brightness-0 invert"
+                width={200}
+                height={52}
+                className="h-14 w-auto object-contain"
               />
             </Link>
             <p className="text-sm text-slate-400 leading-relaxed mb-4">
-              Reviews independentes e comparativos dos melhores produtos para você tomar a decisão certa antes de comprar.
+              Análises independentes e comparativos dos melhores produtos para você tomar a decisão certa antes de comprar.
             </p>
             <p className="text-xs text-slate-500 leading-relaxed">
               Este site participa de programas de afiliados. Ao comprar pelos nossos links, podemos receber uma comissão sem custo adicional para você.

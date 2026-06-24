@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: PageProps) {
   if (!cat) return {};
   return {
     title: cat.nome,
-    description: cat.descricao ?? `Reviews e comparativos de ${cat.nome}`,
+    description: cat.descricao ?? `Análises e comparativos de ${cat.nome}`,
   };
 }
 
