@@ -97,8 +97,36 @@ export default async function ArtigoPage({ params }: PageProps) {
     })),
   } : null;
 
+  const jsonLdProducts = artigo.produtos
+    .filter((ap) => ap.nota != null || ap.precoAproximado != null)
+    .map((ap) => ({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      name: ap.produto.nome,
+      description: ap.produto.descricao ?? undefined,
+      image: ap.produto.imagem ?? undefined,
+      ...(ap.nota != null && {
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: ap.nota,
+          bestRating: 10,
+          worstRating: 0,
+          ratingCount: 1,
+        },
+      }),
+      ...(ap.precoAproximado != null && ap.produto.linkAfiliado && {
+        offers: {
+          "@type": "Offer",
+          price: ap.precoAproximado,
+          priceCurrency: "BRL",
+          availability: "https://schema.org/InStock",
+          url: `${siteUrl}/api/redirect/${ap.produto.linkAfiliado.id}`,
+        },
+      }),
+    }));
+
   return (
-    <div className="max-w-5xl mx-auto px-4 py-8">
+    <div className="max-w-4xl mx-auto px-4 py-10">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdArticle) }}
@@ -113,6 +141,13 @@ export default async function ArtigoPage({ params }: PageProps) {
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdItemList) }}
         />
       )}
+      {jsonLdProducts.map((p, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(p) }}
+        />
+      ))}
 
       <Breadcrumb
         items={[
@@ -121,31 +156,37 @@ export default async function ArtigoPage({ params }: PageProps) {
         ]}
       />
 
-      <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-2 leading-tight">
+      <h1 className="text-3xl md:text-4xl font-bold text-slate-900 mt-4 mb-3 leading-tight tracking-tight">
         {artigo.titulo}
       </h1>
 
-      <p className="text-sm text-slate-400 mb-6">
-        Atualizado em{" "}
-        {new Date(artigo.atualizadoEm).toLocaleDateString("pt-BR", {
-          day: "2-digit",
-          month: "long",
-          year: "numeric",
-        })}
-      </p>
+      <div className="flex items-center gap-3 mb-8">
+        <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-violet-600 bg-violet-50 border border-violet-100 px-3 py-1 rounded-full">
+          {artigo.categoria.icone && <span>{artigo.categoria.icone}</span>}
+          {artigo.categoria.nome}
+        </span>
+        <span className="text-xs text-slate-400">
+          Atualizado em{" "}
+          {new Date(artigo.atualizadoEm).toLocaleDateString("pt-BR", {
+            day: "2-digit",
+            month: "long",
+            year: "numeric",
+          })}
+        </span>
+      </div>
 
       {artigo.produtos.length > 0 && (
         <TabelaComparativa produtos={artigo.produtos} />
       )}
 
       <div
-        className="prose prose-slate max-w-none my-8 prose-headings:text-slate-900 prose-a:text-violet-600 prose-a:no-underline hover:prose-a:underline"
+        className="prose prose-slate max-w-none my-8 prose-headings:text-slate-900 prose-headings:font-bold prose-headings:tracking-tight prose-a:text-violet-600 prose-a:no-underline hover:prose-a:underline prose-img:rounded-xl prose-h2:border-b prose-h2:border-slate-100 prose-h2:pb-2"
         dangerouslySetInnerHTML={{ __html: artigo.conteudo }}
       />
 
       {artigo.produtos.length > 0 && (
-        <section className="mt-12">
-          <h2 className="text-2xl font-bold text-slate-900 mb-6 pb-3 border-b border-slate-200">
+        <section className="mt-14">
+          <h2 className="text-2xl font-bold text-slate-900 mb-6 pb-3 border-b border-slate-100 tracking-tight">
             Análises Completas
           </h2>
           <div className="space-y-8">

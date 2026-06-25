@@ -52,11 +52,12 @@ model ArtigoProduto {
   artigoId  Int
   produto   Produto @relation(fields: [produtoId], references: [id])
   produtoId Int
-  posicao   Int
-  nota      Float?
-  destaque  String?
-  pros      String?
-  contras   String?
+  posicao          Int
+  nota             Float?
+  destaque         String?
+  pros             String?
+  contras          String?
+  precoAproximado  Float?
 
   @@unique([artigoId, produtoId])
   @@index([artigoId, posicao])

@@ -15,6 +15,7 @@ type ProdutoVinculado = {
   destaque: string;
   pros: string;
   contras: string;
+  precoAproximado: string;
 };
 
 type ArtigoProdutoExistente = {
@@ -24,6 +25,7 @@ type ArtigoProdutoExistente = {
   destaque?: string | null;
   pros?: string | null;
   contras?: string | null;
+  precoAproximado?: number | null;
   produto: Produto;
 };
 
@@ -67,6 +69,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
       destaque: ap.destaque ?? "",
       pros: ap.pros ? JSON.parse(ap.pros).join("\n") : "",
       contras: ap.contras ? JSON.parse(ap.contras).join("\n") : "",
+      precoAproximado: ap.precoAproximado?.toString() ?? "",
     })) ?? []
   );
 
@@ -102,6 +105,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
         destaque: "",
         pros: "",
         contras: "",
+        precoAproximado: "",
       },
     ]);
     setProdutoSelecionado("");
@@ -143,6 +147,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
         destaque: p.destaque || null,
         pros: parseLista(p.pros),
         contras: parseLista(p.contras),
+        precoAproximado: p.precoAproximado ? Number(p.precoAproximado) : null,
       })),
     });
 
@@ -328,6 +333,21 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
                     value={pv.nota}
                     onChange={(e) => updateProduto(pv.produtoId, "nota", e.target.value)}
                     placeholder="8.5"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-medium text-gray-600 mb-1">
+                    Preço aproximado{" "}
+                    <span className="text-gray-400 font-normal">(R$, ex: 299.90)</span>
+                  </label>
+                  <input
+                    type="number"
+                    min="0"
+                    step="0.01"
+                    value={pv.precoAproximado}
+                    onChange={(e) => updateProduto(pv.produtoId, "precoAproximado", e.target.value)}
+                    placeholder="299.90"
                     className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
                 </div>

@@ -29,6 +29,7 @@ export async function POST(req: NextRequest) {
               destaque: ap.destaque || null,
               pros: ap.pros || null,
               contras: ap.contras || null,
+              precoAproximado: ap.precoAproximado ?? null,
             })),
           }
         : undefined,
@@ -45,4 +46,5 @@ type ArtigoProdutoInput = {
   destaque?: string | null;
   pros?: string | null;
   contras?: string | null;
+  precoAproximado?: number | null;
 };

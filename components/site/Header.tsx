@@ -20,9 +20,9 @@ export async function Header() {
             <Image
               src="/logoafiliados.png"
               alt="Achado Inteligente"
-              width={320}
-              height={80}
-              className="h-20 w-auto object-contain block"
+              width={200}
+              height={50}
+              className="h-11 w-auto object-contain block"
               priority
             />
           </Link>

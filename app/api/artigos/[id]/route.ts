@@ -11,6 +11,7 @@ type ArtigoProdutoInput = {
   destaque?: string | null;
   pros?: string | null;
   contras?: string | null;
+  precoAproximado?: number | null;
 };
 
 export async function PUT(req: NextRequest, { params }: Params) {
@@ -48,6 +49,7 @@ export async function PUT(req: NextRequest, { params }: Params) {
           destaque: ap.destaque || null,
           pros: ap.pros || null,
           contras: ap.contras || null,
+          precoAproximado: ap.precoAproximado ?? null,
         })),
       });
     }
