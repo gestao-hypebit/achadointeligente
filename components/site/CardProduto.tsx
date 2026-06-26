@@ -26,28 +26,24 @@ const positionConfig: Record<number, {
   headerBg: string;
   badgeBg: string;
   badgeText: string;
-  medal: string;
 }> = {
   1: {
     bar: "#F59E0B",
     headerBg: "bg-gradient-to-r from-amber-400 to-amber-500",
     badgeBg: "bg-amber-600/25",
     badgeText: "text-amber-950",
-    medal: "🥇",
   },
   2: {
     bar: "#7C3AED",
     headerBg: "bg-gradient-to-r from-violet-600 to-violet-700",
     badgeBg: "bg-white/20",
     badgeText: "text-white",
-    medal: "🥈",
   },
   3: {
     bar: "#64748B",
     headerBg: "bg-gradient-to-r from-slate-500 to-slate-600",
     badgeBg: "bg-white/20",
     badgeText: "text-white",
-    medal: "🥉",
   },
 };
 
@@ -56,7 +52,6 @@ const defaultConfig = {
   headerBg: "bg-gradient-to-r from-violet-600 to-violet-700",
   badgeBg: "bg-white/20",
   badgeText: "text-white",
-  medal: "",
 };
 
 function Estrelas({ nota }: { nota: number }) {
@@ -89,8 +84,8 @@ export function CardProduto({ artigoProduto: ap }: Props) {
       {/* Destaque header */}
       {ap.destaque && (
         <div className={`${cfg.headerBg} px-6 py-3 flex items-center gap-3`}>
-          <span className={`text-xs font-black px-2 py-0.5 rounded-full ${cfg.badgeBg} ${cfg.badgeText}`}>
-            {cfg.medal || `#${ap.posicao}`}
+          <span className={`text-xs font-bold px-2 py-0.5 rounded-full tracking-wide ${cfg.badgeBg} ${cfg.badgeText}`}>
+            #{ap.posicao}
           </span>
           <span className={`font-semibold text-sm ${ap.posicao === 1 ? "text-amber-950" : "text-white"}`}>
             {ap.destaque}
@@ -113,12 +108,9 @@ export function CardProduto({ artigoProduto: ap }: Props) {
 
           <div className="flex-1 min-w-0">
             {!ap.destaque && (
-              <div className="flex items-center gap-2 mb-1">
-                <span className="text-base leading-none">{cfg.medal}</span>
-                <span className="text-xs font-bold text-slate-300 uppercase tracking-widest">
-                  #{ap.posicao}
-                </span>
-              </div>
+              <span className="text-xs font-bold text-slate-300 uppercase tracking-widest mb-1 block">
+                #{ap.posicao}
+              </span>
             )}
             <h3 className="text-xl font-bold text-slate-900 mb-2 leading-tight">
               {ap.produto.nome}

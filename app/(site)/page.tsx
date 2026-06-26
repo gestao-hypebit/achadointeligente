@@ -93,15 +93,15 @@ export default async function HomePage() {
 
       {/* Category chips */}
       {categorias.length > 0 && (
-        <section className="bg-white border-b border-slate-200/80 py-3 px-4">
-          <div className="max-w-6xl mx-auto flex gap-2 overflow-x-auto hide-scrollbar">
+        <section className="sticky top-0 z-10 bg-white/90 backdrop-blur-md border-b border-slate-100 py-2 px-4">
+          <div className="max-w-6xl mx-auto flex gap-1 overflow-x-auto hide-scrollbar">
             {categorias.map((cat) => (
               <Link
                 key={cat.id}
                 href={`/${cat.slug}`}
-                className="flex items-center gap-1.5 px-4 py-2 bg-slate-50 hover:bg-violet-600 hover:text-white border border-slate-200 hover:border-violet-600 rounded-full text-sm text-slate-700 transition-all whitespace-nowrap font-medium"
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm text-slate-500 hover:text-violet-700 hover:bg-violet-50 transition-all whitespace-nowrap font-medium"
               >
-                {cat.icone && <span>{cat.icone}</span>}
+                {cat.icone && <span className="text-sm">{cat.icone}</span>}
                 {cat.nome}
               </Link>
             ))}

@@ -17,8 +17,6 @@ interface Props {
   produtos: ArtigoProdutoCompleto[];
 }
 
-const medals: Record<number, string> = { 1: "🥇", 2: "🥈", 3: "🥉" };
-
 export function TabelaComparativa({ produtos }: Props) {
   const temNota = produtos.some((p) => p.nota != null);
   const temPreco = produtos.some((p) => p.precoAproximado != null);
@@ -46,10 +44,8 @@ export function TabelaComparativa({ produtos }: Props) {
               key={ap.id}
               className={`transition-colors ${idx % 2 === 0 ? "bg-white" : "bg-slate-50/60"} hover:bg-violet-50/40`}
             >
-              <td className="px-5 py-3.5 text-lg">
-                {medals[ap.posicao] ?? (
-                  <span className="text-sm font-bold text-violet-300">{ap.posicao}</span>
-                )}
+              <td className="px-5 py-3.5">
+                <span className="text-sm font-bold text-slate-400">#{ap.posicao}</span>
               </td>
               <td className="px-4 py-3.5 font-semibold text-slate-900">{ap.produto.nome}</td>
               <td className="px-4 py-3.5 hidden sm:table-cell">
