@@ -7,12 +7,18 @@ type Props = {
     slug: string;
     descricao: string;
     imagemCapa?: string | null;
+    atualizadoEm?: Date | string | null;
   };
   categoriaSlug: string;
   categoriaLabel?: string;
   categoriaIcone?: string | null;
   featured?: boolean;
 };
+
+function dataFormatada(data?: Date | string | null) {
+  if (!data) return null;
+  return new Date(data).toLocaleDateString("pt-BR", { month: "short", year: "numeric" });
+}
 
 export function CardArtigo({
   artigo,
@@ -21,6 +27,7 @@ export function CardArtigo({
   categoriaIcone,
   featured = false,
 }: Props) {
+  const dataLabel = dataFormatada(artigo.atualizadoEm);
   const badge = categoriaLabel ? (
     <span className="inline-flex items-center gap-1 text-xs font-bold uppercase tracking-wider text-violet-600 bg-violet-50 px-3 py-1 rounded-full border border-violet-100">
       {categoriaIcone && <span>{categoriaIcone}</span>}
@@ -70,12 +77,17 @@ export function CardArtigo({
             {artigo.descricao}
           </p>
 
-          <span className="text-sm font-semibold text-violet-600 mt-6 inline-flex items-center gap-1.5 group-hover:gap-3 transition-all duration-200">
-            Ler análise completa
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-              <path d="M5 12h14M12 5l7 7-7 7" />
-            </svg>
-          </span>
+          <div className="flex items-center justify-between mt-6">
+            <span className="text-sm font-semibold text-violet-600 inline-flex items-center gap-1.5 group-hover:gap-3 transition-all duration-200">
+              Ler análise completa
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </span>
+            {dataLabel && (
+              <span className="text-xs text-slate-300">{dataLabel}</span>
+            )}
+          </div>
         </div>
 
         {/* Mobile-only body (below image) */}
@@ -144,12 +156,17 @@ export function CardArtigo({
           {artigo.descricao}
         </p>
 
-        <span className="text-xs font-semibold text-violet-600 mt-3 inline-flex items-center gap-1 group-hover:gap-2 transition-all duration-200">
-          Ler análise completa
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <path d="M5 12h14M12 5l7 7-7 7" />
-          </svg>
-        </span>
+        <div className="flex items-center justify-between mt-3">
+          <span className="text-xs font-semibold text-violet-600 inline-flex items-center gap-1 group-hover:gap-2 transition-all duration-200">
+            Ler análise completa
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+              <path d="M5 12h14M12 5l7 7-7 7" />
+            </svg>
+          </span>
+          {dataLabel && (
+            <span className="text-xs text-slate-300">{dataLabel}</span>
+          )}
+        </div>
       </div>
     </Link>
   );
