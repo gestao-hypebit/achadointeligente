@@ -190,7 +190,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
                 update("titulo", e.target.value);
                 if (!artigo) update("slug", autoSlug(e.target.value));
               }}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
             />
           </div>
           <div>
@@ -200,7 +200,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
               required
               value={form.slug}
               onChange={(e) => update("slug", e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
             />
           </div>
           <div className="md:col-span-2">
@@ -210,7 +210,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
               value={form.descricao}
               onChange={(e) => update("descricao", e.target.value)}
               rows={3}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
             />
             <p className="text-xs text-gray-400 mt-1">{form.descricao.length} caracteres</p>
           </div>
@@ -220,7 +220,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
               required
               value={form.categoriaId}
               onChange={(e) => update("categoriaId", e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
             >
               {categorias.map((c) => (
                 <option key={c.id} value={c.id}>{c.nome}</option>
@@ -233,7 +233,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
               type="url"
               value={form.imagemCapa}
               onChange={(e) => update("imagemCapa", e.target.value)}
-              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
             />
           </div>
           <div className="flex items-center gap-2">
@@ -265,7 +265,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
           <select
             value={produtoSelecionado}
             onChange={(e) => setProdutoSelecionado(e.target.value)}
-            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
           >
             <option value="">Selecionar produto...</option>
             {produtosDisponiveis.map((p) => (
@@ -318,7 +318,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
                     value={pv.destaque}
                     onChange={(e) => updateProduto(pv.produtoId, "destaque", e.target.value)}
                     placeholder="Melhor Geral, Custo-Benefício..."
-                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                   />
                 </div>
                 <div>
@@ -333,7 +333,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
                     value={pv.nota}
                     onChange={(e) => updateProduto(pv.produtoId, "nota", e.target.value)}
                     placeholder="8.5"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                   />
                 </div>
                 <div>
@@ -348,7 +348,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
                     value={pv.precoAproximado}
                     onChange={(e) => updateProduto(pv.produtoId, "precoAproximado", e.target.value)}
                     placeholder="299.90"
-                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                   />
                 </div>
                 <div>
@@ -360,7 +360,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
                     value={pv.pros}
                     onChange={(e) => updateProduto(pv.produtoId, "pros", e.target.value)}
                     placeholder={"Silencioso\nLeve\nCabo longo"}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                   />
                 </div>
                 <div>
@@ -372,7 +372,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
                     value={pv.contras}
                     onChange={(e) => updateProduto(pv.produtoId, "contras", e.target.value)}
                     placeholder={"Reservatório pequeno\nCabo curto"}
-                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full border border-gray-300 rounded-lg px-3 py-1.5 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
                   />
                 </div>
               </div>
@@ -391,7 +391,7 @@ export function FormArtigo({ artigo, categorias, produtos }: Props) {
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
+          className="bg-violet-600 hover:bg-violet-700 text-white font-semibold px-6 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
         >
           {loading ? "Salvando..." : artigo ? "Salvar alterações" : "Criar artigo"}
         </button>

@@ -70,7 +70,7 @@ export function FormProduto({ produto }: Props) {
           required
           value={form.nome}
           onChange={(e) => update("nome", e.target.value)}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
         />
       </div>
 
@@ -80,7 +80,7 @@ export function FormProduto({ produto }: Props) {
           rows={2}
           value={form.descricao}
           onChange={(e) => update("descricao", e.target.value)}
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
         />
       </div>
 
@@ -94,7 +94,7 @@ export function FormProduto({ produto }: Props) {
           value={form.imagem}
           onChange={(e) => update("imagem", e.target.value)}
           placeholder="https://..."
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
         />
         {form.imagem && !previewError && (
           <div className="mt-3 p-3 bg-gray-50 border border-gray-200 rounded-lg inline-flex items-center gap-3">
@@ -119,7 +119,7 @@ export function FormProduto({ produto }: Props) {
           value={form.linkUrl}
           onChange={(e) => update("linkUrl", e.target.value)}
           placeholder="https://mercadolivre.com.br/..."
-          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-violet-500"
         />
       </div>
 
@@ -127,7 +127,7 @@ export function FormProduto({ produto }: Props) {
         <button
           type="submit"
           disabled={loading}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
+          className="bg-violet-600 hover:bg-violet-700 text-white font-semibold px-6 py-2 rounded-lg text-sm transition-colors disabled:opacity-50"
         >
           {loading ? "Salvando..." : produto ? "Salvar alterações" : "Criar produto"}
         </button>
