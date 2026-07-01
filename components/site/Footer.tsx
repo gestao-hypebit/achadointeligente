@@ -43,6 +43,8 @@ export async function Footer() {
               {[
                 { href: "/", label: "Início" },
                 { href: "/busca", label: "Buscar Produtos" },
+                { href: "/sobre", label: "Sobre" },
+                { href: "/contato", label: "Contato" },
                 { href: "/politica-de-privacidade", label: "Política de Privacidade" },
                 { href: "/divulgacao-afiliados", label: "Divulgação de Afiliados" },
               ].map((l) => (

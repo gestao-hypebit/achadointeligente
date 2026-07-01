@@ -11,8 +11,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const categorias = await prisma.categoria.findMany({ select: { slug: true, criadoEm: true } });
 
+  const paginasEstaticas = [
+    { url: `${BASE_URL}/sobre`, changeFrequency: "monthly" as const, priority: 0.5 },
+    { url: `${BASE_URL}/contato`, changeFrequency: "monthly" as const, priority: 0.5 },
+    { url: `${BASE_URL}/politica-de-privacidade`, changeFrequency: "yearly" as const, priority: 0.3 },
+    { url: `${BASE_URL}/divulgacao-afiliados`, changeFrequency: "yearly" as const, priority: 0.3 },
+  ];
+
   return [
     { url: BASE_URL, lastModified: new Date(), changeFrequency: "daily", priority: 1 },
+    ...paginasEstaticas.map((p) => ({ ...p, lastModified: new Date() })),
     ...categorias.map((c) => ({
       url: `${BASE_URL}/${c.slug}`,
       lastModified: c.criadoEm,
